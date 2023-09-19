@@ -1,0 +1,251 @@
+<!-- Main content -->
+<section class="container mt-5">
+    <div class="container-fluid">
+        <form [formGroup]="employeeForm">
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-card class="t-card">
+                        <mat-card-header>
+                            <mat-card-title>Employee Form</mat-card-title>
+                            <!-- <mat-card-subtitle>Subtitle</mat-card-subtitle> -->
+                        </mat-card-header>
+                        <mat-card-content class="pt-3">
+                            <div class="row">
+                                <div class="row mb-3">
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <mat-form-field class="t-full-width">
+                                                    <mat-label>
+                                                        First Name
+                                                        <span class="required">*</span>
+                                                    </mat-label>
+                                                    <input matInput formControlName="firstName" placeholder="Enter First Name" />
+                                                    <mat-error
+                                                        *ngIf="employeeForm.controls['firstName'].hasError('required')">
+                                                       First Name is <strong>required</strong>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field class="t-full-width">
+                                                    <mat-label>
+                                                        Last Name
+                                                        <span class="required">*</span>
+                                                    </mat-label>
+                                                    <input matInput formControlName="lastName" placeholder="Enter Last Name" />
+                                                    <mat-error
+                                                        *ngIf="employeeForm.controls['lastName'].hasError('required')">
+                                                       Last Name is <strong>required</strong>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field class="t-full-width" >
+                                                  <mat-label>
+                                                    Email
+                                                    <span class="required">*</span>
+                                                  </mat-label>
+                                                  <input matInput formControlName="email" placeholder="Enter Email" />
+                                                  <mat-error *ngIf="employeeForm.controls['email'].hasError('required')">
+                                                    Email is <strong>required</strong>
+                                                  </mat-error>
+                                                  <!-- <mat-error
+                                                    *ngIf="
+                                                    employeeForm.controls['email'].hasError('email') &&
+                                                      !employeeForm.controls['email'].hasError('required')
+                                                    "
+                                                  >
+                                                    Email is not valid
+                                                  </mat-error>
+                                                  <mat-error *ngIf="employeeForm.controls['email'].hasError('maxlength')">
+                                                    Email max length is <strong>50</strong>
+                                                  </mat-error> -->
+                                             </mat-form-field>                                              
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field class="t-full-width">
+                                                  <mat-label>
+                                                    Mobile Number
+                                                    <span class="required">*</span>
+                                                  </mat-label>
+                                                  <input matInput formControlName="phone" placeholder="Enter Mobile Number " />
+                                                  <mat-error *ngIf="employeeForm.controls['phone'].hasError('required')">
+                                                    Mobile Number is <strong>required</strong>
+                                                  </mat-error>
+                                                  <mat-error
+                                                    *ngIf="
+                                                    employeeForm.controls['phone'].hasError('phoneValid') &&
+                                                      !employeeForm.controls['phone'].hasError('required')
+                                                    "
+                                                  >
+                                                    Enter valid Mobile Number
+                                                  </mat-error>
+                                                </mat-form-field>
+                                              </div>
+                                              <div class="col-md-6">
+                                                <mat-form-field class="t-full-width">
+                                                  <mat-label>
+                                                    Birth Date
+                                                    <span class="required">*</span>
+                                                  </mat-label>
+                                                  <input
+                                                    matInput
+                                                    [matDatepicker]="birthDatePicker"
+                                                    [max]="today"
+                                                    formControlName="dateOfBirth"
+                                                    placeholder="Enter Birth Date"
+                                                    name="birthDate"
+                                                    (dateChange)="dateChange('change', $event)"
+                                                  />
+                                                  <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+                                                  <mat-datepicker #birthDatePicker></mat-datepicker>
+                                                  <mat-error *ngIf="employeeForm.controls['dateOfBirth'].hasError('required')">
+                                                    Birth Date is <strong>required</strong>
+                                                  </mat-error>
+                                                </mat-form-field>
+                                              </div>
+                                            <div class="col-md-6">
+                                                <mat-label class="mt-1">
+                                                    Gender
+                                                    <span class="required">*</span>
+                                                </mat-label>
+                                                <br />
+                                                <mat-radio-group aria-label="Select Gender" formControlName="gender">
+                                                    <mat-radio-button *ngFor="let g of genders" [value]="g.value"> {{
+                                                        g.text }} </mat-radio-button>
+                                                </mat-radio-group>
+                                                <mat-error *ngIf="employeeForm.controls['gender'].hasError('required')">
+                                                    Gender is <strong>required</strong>
+                                                </mat-error>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-form-field class="t-full-width">
+                                                    <mat-label>
+                                                        Address
+                                                        <span class="required">*</span>
+                                                    </mat-label>
+                                                    <textarea matInput formControlName="address"
+                                                        placeholder="Enter Address"></textarea>
+                                                    <mat-error
+                                                        *ngIf="employeeForm.controls['address'].hasError('required')">
+                                                        Address is <strong>required</strong>
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <mat-label class="mt-1">
+                                                    Education
+                                                    <span class="required">*</span>
+                                                </mat-label>
+                                                <br />
+                                                <mat-checkbox formControlName="ssc">SSC</mat-checkbox>
+                                                <mat-checkbox formControlName="hsc">HSC</mat-checkbox>
+                                                <mat-checkbox formControlName="bsc">BSc</mat-checkbox>
+                                                <mat-checkbox formControlName="msc">MSc</mat-checkbox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="profile" (click)="avatarClassicInput.click()">
+                                            <p *ngIf="!avaterPreview">Upload</p>
+                                            <input type="hidden" formControlName="picture" />
+                                            <img [src]="avaterPreview" *ngIf="!!avaterPreview" alt="">
+                                            <input type="file" hidden #avatarClassicInput
+                                                (change)="uploadFileAttach($event)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="t-full-width">
+                                      <mat-label> Zip Code </mat-label>
+                                      <input matInput formControlName="zipCode" placeholder="Enter Zip Code" />
+                                    </mat-form-field>
+                                  </div>
+                
+                                <div class="col-md-4">
+                                    <mat-form-field class="t-full-width">
+                                        <mat-label>
+                                            Country
+                                            <span class="required">*</span>
+                                        </mat-label>
+                                        <mat-select formControlName="countryId">
+                                            <mat-option *ngFor="let country of filteredCountries " [value]="country.id">
+                                                <small>
+                                                    {{ country.name }}
+                                                </small>
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="t-full-width">
+                                        <mat-label>
+                                            State
+                                            <span class="required">*</span>
+                                        </mat-label>
+                                        <mat-select formControlName="stateId">
+                                            <mat-option *ngFor="let state of filteredStates " [value]="state.id">
+                                                <small>
+                                                    {{ state.name }}
+                                                </small>
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="t-full-width">
+                                        <mat-label>
+                                            City
+                                            <span class="required">*</span>
+                                        </mat-label>
+                                        <mat-select formControlName="cityId">
+                                            <mat-option *ngFor="let city of filteredCities" [value]="city.id">
+                                                <small>
+                                                    {{ city.name }}
+                                                </small>
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <!-- <div class="col-md-4">
+                                    <mat-form-field class="t-full-width">
+                                        <mat-label>
+                                            Department
+                                            <span class="required">*</span>
+                                        </mat-label>
+                                        <mat-select formControlName="departmentId">
+                                            <mat-option *ngFor="let department of filteredDepartments " [value]="department.id">
+                                                <small>
+                                                    {{ department.departmentName }}
+                                                </small>
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div> -->
+                            </div>
+                        </mat-card-content>
+                        <mat-card-footer>
+                            <div class="row p-3">
+                                <div class="col-md-12 mt-3">
+                                    <button mat-stroked-button class="t-mat-raised-button me-1" (click)="reset()">
+                                        <mat-icon>restart_alt</mat-icon>
+                                        Reset</button>
+                                    <button mat-stroked-button class="t-mat-raised-button me-1"
+                                        (click)="clearEmployee()">
+                                        <mat-icon>clear</mat-icon>
+                                        Clear</button>
+                                    <button mat-stroked-button color="primary" (click)="save()"
+                                        class="t-mat-raised-button me-1">
+                                        <mat-icon>{{isEdit? "update":"save"}}</mat-icon>
+                                        {{ isEdit ? "Update" : "Save" }}
+                                    </button>
+                                </div>
+                            </div>
+                        </mat-card-footer>
+                    </mat-card>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

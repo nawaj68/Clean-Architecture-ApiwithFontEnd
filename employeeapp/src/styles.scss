@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.t-full-width {
+    width: 100%;
+
+    mat-label {
+        font-weight: 400;
+    }
+}
+
+.profile {
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+}
+
+.profile p {
+    line-height: 125px;
+    color: purple;
+    text-align: center;
+    font-size: 30px;
+}
+
+.profile img {
+    max-width: 100%;
+    max-height: 150px !important;
+}
